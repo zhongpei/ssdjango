@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block contend %}
+    {% if password_is_wrong %}
+        <h4>The email or password is wrong!</h4>
+    {% endif %}
+<form action="" method="post" name="login">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <p><input type="submit" value="submit"></p>
+</form>
+{% endblock %}

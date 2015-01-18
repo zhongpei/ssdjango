@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block contend %}
+    <aside class="left-side">
+        <section class="contend-header">
+            <h1>
+                用户中心
+                <small>User Panel</small>
+            </h1>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="box box-solid">
+                        <div class="box box-header">
+                            <h3 class="box-title">公告&FAQ</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>username:{{ current_user.username }}</p>
+            <p>email:{{ current_user.email }}</p>
+            <div class="row">
+                <div class="col-xs-4">
+                    <p>端口:{{ shadowsocks.ss_port }}</p>
+                    <p>密码:{{ shadowsocks.ss_password }}</p>
+                    <p>ss_down_throught:{{ shadowsocks.ss_down_throught }}</p>
+                    <p>ss_up_throught:{{ shadowsocks.ss_up_throught }}</p>
+                </div>
+                <div class="col-xs-4">
+                    <p>ss_max_throught:{{ shadowsocks.ss_max_throught }}</p>
+                    <p>ss_active:{{ shadowsocks.ss_active }}</p>
+                    <p>ss_user_type:{{ shadowsocks.ss_user_type }}</p>
+                    <p>ss_last_get_gift_time:{{ shadowsocks.ss_last_get_gift_time }}</p>
+                    <p>ss_last_rest_pass_time:{{ shadowsocks.ss_last_rest_pass_time }}</p>
+                </div>
+            </div>
+        </section>
+    </aside>
+{% endblock %}
