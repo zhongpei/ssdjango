@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ssweb.models import MyUser
+from ssweb.models import MyUser, InviteCode
 
 # Register your models here.
 
@@ -14,3 +14,4 @@ class MyUserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(MyUser, MyUserAdmin)
+admin.site.register(InviteCode)

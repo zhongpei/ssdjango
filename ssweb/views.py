@@ -13,9 +13,8 @@ from .models import MyUser, InviteCode
 @login_required
 def hello(request):
     a = MyUser.objects.filter(username=request.user.get_username()).first()
-    print a.shadowsocks.ss_port
     if request.user.is_authenticated():
-        return render(request, 'index.html', {'current_user': request.user, 'shadowsocks': a.shadowsocks})
+        return render(request, 'index.html', {'current_user': request.user})
 
     return render(request, 'index.html')
 
@@ -72,4 +71,4 @@ def get_last_user_port():
     if MyUser.objects.count() == 0:
         return 10000
     else:
-        return MyUser.objects.order_by('-id').first().shadowsocks.ss_port
+        return MyUser.objects.order_by('-id').first().ss_port
