@@ -10,12 +10,20 @@ from .models import MyUser, InviteCode
 
 
 # Create your views here.
-@login_required
 def hello(request):
-    a = MyUser.objects.filter(username=request.user.get_username()).first()
     if request.user.is_authenticated():
-        return render(request, 'index.html', {'current_user': request.user})
+        return render(request, 'hello.html')
+    return render(request, 'hello.html')
 
+
+@login_required
+def user_index(request):
+    if request.user.is_authenticated():
+        user = request.user
+        total_load = user.ss_up_throught + user.ss_down_throught
+        percent = float(total_load)/float(user.ss_max_throught)*100.0
+        return render(request, 'index.html', {'current_user': request.user,
+                                              'total_load': total_load, 'percent': percent})
     return render(request, 'index.html')
 
 
@@ -35,7 +43,7 @@ def register(request):
                                               ss_password=ss_password)
             # Shadowsocks.objects.create(ss_port=ss_port, ss_password=ss_password, user=user)
             InviteCode.objects.filter(code=form.cleaned_data['invite_code']).delete()
-            return redirect(reverse(hello))
+            return redirect(reverse(user_index))
     else:
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})
@@ -52,7 +60,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect(reverse(hello))
+                    return redirect(reverse(user_index))
                 else:
                     print 'user not active!'
             else:

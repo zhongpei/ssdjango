@@ -2,31 +2,47 @@
 <html>
 <head lang="en">
     {# Load the tag library #}
-    {% load bootstrap3 %}
+{#    {% load bootstrap3 %}#}
     {# Load CSS and JavaScript #}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+{#    {% bootstrap_css %}#}
+{#    {% bootstrap_javascript %}#}
     {# Display django.contrib.messages as Bootstrap alerts #}
-    {% bootstrap_messages %}
+{#    {% bootstrap_messages %}#}
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>welcome to open ss.</title>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" type="text/css" href="http://cdn.amazeui.org/amazeui/2.1.0/css/amazeui.min.css">
+    <script src="http://cdn.amazeui.org/amazeui/2.1.0/js/amazeui.min.js"></script>
+    <script src="http://cdn.amazeui.org/amazeui/2.1.0/js/amazeui.legacy.min.js"></script>
+    <script src="http://cdn.amazeui.org/amazeui/2.1.0/js/amazeui.widgets.helper.min.js"></script>
+    <style>
+        .header {
+          text-align: center;
+        }
+        .header h1 {
+          font-size: 200%;
+          color: #333;
+          margin-top: 30px;
+        }
+        .header p {
+          font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-<div>Index:<a href="index">Home</a></div>
-<hr>
+<div class="container">
+    {% block contend %}
 
-{% block contend %}
-
-{% endblock %}
-
-<div id="footer">
-    {% block footer %}
-    &copy; Copyright 2014-2015 by <a href="http://dmimo.com/">cdlxkill</a>.
     {% endblock %}
 </div>
-
 </body>
+<div id="footer" class="am-footer">
+    {% block footer %}
+    &copy; Copyright 2014-2015 by <a href="/">cdlxkill</a>.
+    {% endblock %}
+</div>
 </html>

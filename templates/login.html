@@ -1,13 +1,51 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
-
 {% block contend %}
-    {% if password_is_wrong %}
-        <h4>The email or password is wrong!</h4>
-    {% endif %}
-<form action="" method="post" name="login">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <p><input type="submit" value="submit"></p>
-</form>
+{% load crispy_forms_tags %}
+<div class="header">
+    <div class="am-g">
+        <h1>Open Shadowsocks</h1>
+        <p>日本Linode节点<br/>每月5G，快速，方便</p>
+    </div>
+    <hr/>
+</div>
+<div class="am-g">
+    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+        <h3>登录</h3>
+        <hr>
+        <div class="am-btn-group">
+            <a href="#" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i> Github</a>
+            <a href="#" class="am-btn am-btn-success am-btn-sm"><i class="am-icon-google-plus-square am-icon-sm"></i> Google+</a>
+            <a href="#" class="am-btn am-btn-primary am-btn-sm"><i class="am-icon-stack-overflow am-icon-sm"></i> stackOverflow</a>
+        </div>
+        <br>
+        <br>
+        <form method="post" class="am-form" action="" name="login">
+            {% if password_is_wrong %}
+                <div class="am-alert am-alert-warning" data-am-alert>
+                    The email or password is wrong!
+                </div>
+            {% endif %}
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="am-cf">
+                <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fr">
+            </div>
+        </form>
+    </div>
+    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+        <div class="am-u-lg-6">
+            <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks"><h4>Android</h4></a>
+            <p>Android客户端</p>
+            <h4><a href="http://sourceforge.net/projects/shadowsocksgui/files/dist/">Shadowsocks C#</a></h4>
+            <p> Windows用户推荐此客户端.</p>
+        </div>
+        <div class="am-u-lg-6">
+            <a href="https://itunes.apple.com/us/app/shadowsocks/id665729974?mt=8"><h4>iOS</h4></a>
+            <p>iOS客户端</p>
+            <h4><a href="https://github.com/ohdarling/GoAgentX/releases">GoAgentX</a></h4>
+            <p> Mac用户推荐此客户端.</p>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
