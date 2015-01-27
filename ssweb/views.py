@@ -1,3 +1,4 @@
+#coding=UTF-8
 from random import randint
 
 from django.shortcuts import render, redirect
@@ -7,6 +8,9 @@ from django.core.urlresolvers import reverse
 
 from .forms import UserRegisterForm, UserLoginForm
 from .models import MyUser, InviteCode
+
+import socket
+
 
 
 # Create your views here.
@@ -22,8 +26,10 @@ def user_index(request):
         user = request.user
         total_load = user.ss_up_throught + user.ss_down_throught
         percent = float(total_load)/float(user.ss_max_throught)*100.0
+        localIP = socket.gethostbyname(socket.gethostname())#得到本地ip
         return render(request, 'index.html', {'current_user': request.user,
-                                              'total_load': total_load, 'percent': percent})
+                                              'total_load': total_load, 'percent': percent,
+                                              'localIP': localIP})
     return render(request, 'index.html')
 
 
