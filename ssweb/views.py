@@ -26,7 +26,15 @@ def user_index(request):
         user = request.user
         total_load = user.ss_up_throught + user.ss_down_throught
         percent = float(total_load)/float(user.ss_max_throught)*100.0
-        localIP = socket.gethostbyname(socket.gethostname())#得到本地ip
+        #得到本地ip
+        try:
+            csock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            csock.connect(('8.8.8.8', 80))
+            (addr, port) = csock.getsockname()
+            csock.close()
+            localIP = addr
+        except socket.error:
+            localIP = addr
         return render(request, 'index.html', {'current_user': request.user,
                                               'total_load': total_load, 'percent': percent,
                                               'localIP': localIP})
