@@ -13,6 +13,8 @@ django:
     build: .
     expose:
         - "5000"
+    volumes:
+        - .:/opt/app
     links:
         - mysql
     restart: always
